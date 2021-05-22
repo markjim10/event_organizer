@@ -9,8 +9,8 @@ $result = $conn->query($sql);
 
 $user = $result->fetch_object();
 
-if ($user->vericode == $code) {
-    $sql = "UPDATE user_account SET emailstats = 'verified' WHERE username = '$username'";
+if ($user->code == $code) {
+    $sql = "UPDATE user_account SET status = 'verified' WHERE username = '$username'";
     $result = $conn->query($sql);
     echo "ok";
 } else {
