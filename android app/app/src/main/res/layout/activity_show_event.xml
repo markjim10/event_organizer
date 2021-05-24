@@ -22,7 +22,7 @@
             <TextView
                 android:textColor="@color/black"
                 android:id="@+id/tvShowEvent"
-                android:textSize="24dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:text="Event 1"
                 android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
             <TextView
                 android:textColor="@color/black"
                 android:id="@+id/tvShowDate"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:text="2021-03-13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -39,7 +39,7 @@
             <TextView
                 android:textColor="@color/black"
                 android:id="@+id/tvShowTasks"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:text="0 of 1 tasks completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

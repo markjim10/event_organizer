@@ -124,7 +124,7 @@ public class DashboardFragment extends Fragment {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
     }
 
-    private ArrayList getListData(String response) {
+    private ArrayList<Task> getListData(String response) {
         ArrayList<Task> results = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(response);
@@ -156,7 +156,7 @@ public class DashboardFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
                     Log.d("available_tasks: ", response);
-                    ArrayList taskList = getListData(response);
+                    ArrayList<Task> taskList = getListData(response);
                     final ProgressBar progressBar = requireView().findViewById(R.id.pbarTask);
                     progressBar.setVisibility(View.GONE);
                     final ListView lv = requireView().findViewById(R.id.list_tasks_fragment);

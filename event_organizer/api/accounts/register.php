@@ -41,21 +41,17 @@ if ($result->num_rows > 0) {
     $mail->addReplyTo('no-reply@eventorganizer.com', 'No Reply');
     $mail->isHTML(true);
 
-    $sql = "INSERT INTO user_account(mobile, email, username, password, code, status) 
-                            VALUES('$mobile', '$email', '$uname','$pword', '$code', '$emailstats')";
 
-    if ($conn->query($sql) === TRUE) {
+    $mail->Subject = 'Email Verification Code';
+    $mail->Body    = "Hello $email Your verification code is $code";
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-        $mail->Subject = 'Email Verification Code';
-        $mail->Body    = "Hello $email Your verification code is $code";
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-        if ($mail->send()) {
-            echo "sent a verification code";
-        } else {
-            echo "failed sending code";
-        }
+    if ($mail->send()) {
+        $sql = "INSERT INTO user_account(mobile, email, username, password, code, status) 
+        VALUES('$mobile', '$email', '$uname','$pword', '$code', '$emailstats')";
+        $conn->query($sql);
+        echo "sent a verification code";
     } else {
-        echo "failed inserting to db";
+        echo "failed sending code";
     }
 }

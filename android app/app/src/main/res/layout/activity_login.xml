@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"/>
 
         <com.google.android.material.textfield.TextInputLayout
+            app:startIconDrawable="@drawable/ic_baseline_input_24"
             android:layout_marginTop="120dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,6 +39,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="16dp"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            app:endIconMode="password_toggle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password">
@@ -50,22 +53,22 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            app:cornerRadius="0dp"
-            android:onClick="login"
+            android:id="@+id/btnLogin"
             android:layout_marginTop="16dp"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:clickable="true"
+            android:text="Login"
+            android:focusable="true" />
 
         <Button
-            app:cornerRadius="0dp"
-            android:onClick="register"
+            android:id="@+id/btnRegister"
             android:layout_marginTop="8dp"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:text="Register"
+            android:clickable="true"
+            android:focusable="true" />
 
         <ProgressBar
             android:padding="8dp"

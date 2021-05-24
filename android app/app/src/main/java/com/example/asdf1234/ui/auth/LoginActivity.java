@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -30,10 +31,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     ProgressBar progressBar;
     EditText etUsername, etPassword;
+    Button btnLogin, btnRegister;
     String username, password;
     UrlService urlService = new UrlService();
     SharedPreferences sharedPreferences;
@@ -45,6 +47,17 @@ public class LoginActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_login);
+
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(this);
+
+        btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(this);
+
+        etUsername = findViewById(R.id.etLoginUsername);
+        etPassword = findViewById(R.id.etLoginPassword);
+        progressBar = findViewById(R.id.pbarLogin);
+
         sharedPreferences = getSharedPreferences("user_details", MODE_PRIVATE);
         if (sharedPreferences.contains("user_id")) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -56,13 +69,22 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
-    public void login(View view) {
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.btnLogin) {
+            if(validate()) {
+                login();
+            }
+        } else if (v.getId() == R.id.btnRegister) {
+            Intent i = new Intent(this, RegisterActivity.class);
+            startActivity(i);
+        }
+    }
 
-        progressBar = findViewById(R.id.pbarLogin);
+    public boolean validate() {
+
         progressBar.setVisibility(View.VISIBLE);
 
-        etUsername = findViewById(R.id.etLoginUsername);
-        etPassword = findViewById(R.id.etLoginPassword);
 
         username = etUsername.getText().toString();
         password = etPassword.getText().toString();
@@ -70,8 +92,12 @@ public class LoginActivity extends AppCompatActivity {
         if(username.isEmpty() || password.isEmpty()) {
             displayMessage("Fill in all of the fields");
             progressBar.setVisibility(View.INVISIBLE);
-            return;
+            return false;
         }
+        return true;
+    }
+
+    public void login() {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = this.urlService.getUrl() + "accounts/login.php";
@@ -145,8 +171,4 @@ public class LoginActivity extends AppCompatActivity {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
     }
 
-    public void register(View view) {
-        Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(i);
-    }
 }

@@ -29,6 +29,7 @@ import com.example.asdf1234.R;
 import com.example.asdf1234.adapters.EventListAdapter;
 import com.example.asdf1234.databinding.FragmentHomeBinding;
 import com.example.asdf1234.models.Event;
+import com.example.asdf1234.models.User;
 import com.example.asdf1234.services.UrlService;
 import com.example.asdf1234.ui.events.CreateEvent;
 import com.example.asdf1234.ui.events.ShowEvent;
@@ -53,7 +54,6 @@ public class HomeFragment extends Fragment {
     UrlService urlService = new UrlService();
     SharedPreferences sharedPreferences;
     String id, event_id;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
