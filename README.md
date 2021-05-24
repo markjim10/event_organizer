@@ -1,4 +1,4 @@
-# event_organizer
+# Event Organizer
 Simple event organizer android application using Java, PHP, and MySQL
 
 <p style="width: 100%;">
